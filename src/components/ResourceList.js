@@ -1,13 +1,22 @@
 // components/ResourceList.js
-import Link from 'next/link'
-import { ExternalLink } from 'lucide-react'
+import Link from 'next/link' // 导入Link组件，用于实现内部链接
+import { ExternalLink } from 'lucide-react' // 导入ExternalLink图标组件
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
-} from "@/components/ui/card"
+} from "@/components/ui/card" // 导入Card相关组件
 
+/**
+ * 资源列表组件。
+ * 显示一组资源，并提供链接到更多资源的选项。
+ * 
+ * @param {Object} props - 组件的属性。
+ * @param {Array} props.resources - 要显示的资源列表。
+ * @param {boolean} [props.showMoreLink=true] - 是否显示“更多资源”链接。
+ * @returns {JSX.Element} - 渲染的资源列表组件。
+ */
 export default function ResourceList({ resources, showMoreLink = true }) {
   return (
     <section>
@@ -23,9 +32,9 @@ export default function ResourceList({ resources, showMoreLink = true }) {
         {resources.map((resource, index) => (
           <Card key={index}>
             <CardHeader>
-              <a 
-                href={resource.url} 
-                target="_blank" 
+              <a
+                href={resource.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
               >

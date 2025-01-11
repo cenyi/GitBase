@@ -1,26 +1,58 @@
 {
+  // 编译选项
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    // 引入的库
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    // 允许编译 JavaScript 文件
     "allowJs": true,
+    // 跳过库文件检查
     "skipLibCheck": true,
+    // 启用严格模式
     "strict": true,
+    // 不生成输出文件
     "noEmit": true,
+    // 启用 ES 模块交互
     "esModuleInterop": true,
+    // 使用 ES 模块系统
     "module": "esnext",
+    // 使用 bundler 解析模块
     "moduleResolution": "bundler",
+    // 解析 JSON 模块
     "resolveJsonModule": true,
+    // 启用isolatedModules模式
     "isolatedModules": true,
+    // 保留 JSX 语法
     "jsx": "preserve",
+    // 启用增量编译
     "incremental": true,
+    // 插件配置
     "plugins": [
       {
+        // 插件名称
         "name": "next"
       }
     ],
+    // 路径映射
     "paths": {
-      "@/*": ["./src/*"]
+      // @ 符号指向 src 目录
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  // 包含的文件
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  // 排除的文件
+  "exclude": [
+    "node_modules"
+  ]
 }

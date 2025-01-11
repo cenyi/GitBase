@@ -1,9 +1,13 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+// 导入 React 库
+import * as React from "react";
+// 导入 Radix UI 的 Slot 组件
+import { Slot } from "@radix-ui/react-slot";
+// 导入 class-variance-authority 库的 cva 函数
+import { cva, type VariantProps } from "class-variance-authority";
+// 导入工具函数 cn
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
-
+// 使用 cva 定义按钮的样式变体
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
@@ -31,26 +35,33 @@ const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
+// 定义 Button 组件的属性
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+  VariantProps<typeof buttonVariants> {
+  // 指示是否将子组件渲染为 Slot 的子组件
+  asChild?: boolean;
 }
 
+// 创建 Button 组件
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+    // 根据 asChild 属性决定使用的组件
+    const Comp = asChild ? Slot : "button";
+    // 使用 cn 函数合并 className 和样式变体
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
-Button.displayName = "Button"
+);
+// 设置 Button 组件的显示名称
+Button.displayName = "Button";
 
-export { Button, buttonVariants }
+// 导出 Button 组件和样式变体
+export { Button, buttonVariants };

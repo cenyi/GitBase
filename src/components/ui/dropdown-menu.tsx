@@ -1,27 +1,37 @@
 "use client"
 
-import * as React from "react"
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { Check, ChevronRight, Circle } from "lucide-react"
+// 导入 React 库
+import * as React from "react";
+// 导入 Radix UI 的 DropdownMenu 组件及其相关子组件
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+// 导入 Lucide React 图标库中的一些图标
+import { Check, ChevronRight, Circle } from "lucide-react";
+// 导入一个工具函数，用于生成 CSS 类名
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
+// 定义 DropdownMenu 组件，它是 Radix UI 的 DropdownMenu 根组件的封装
+const DropdownMenu = DropdownMenuPrimitive.Root;
 
-const DropdownMenu = DropdownMenuPrimitive.Root
+// 定义 DropdownMenuTrigger 组件，它是触发下拉菜单的按钮或元素
+const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+// 定义 DropdownMenuGroup 组件，它用于将下拉菜单项分组
+const DropdownMenuGroup = DropdownMenuPrimitive.Group;
 
-const DropdownMenuGroup = DropdownMenuPrimitive.Group
+// 定义 DropdownMenuPortal 组件，它用于将下拉菜单内容渲染到 DOM 中的不同位置
+const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
 
-const DropdownMenuPortal = DropdownMenuPrimitive.Portal
+// 定义 DropdownMenuSub 组件，它用于创建子菜单
+const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 
-const DropdownMenuSub = DropdownMenuPrimitive.Sub
+// 定义 DropdownMenuRadioGroup 组件，它用于创建单选按钮组
+const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
-const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
-
+// 定义 DropdownMenuSubTrigger 组件，它是子菜单的触发器
 const DropdownMenuSubTrigger = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & {
-    inset?: boolean
+    inset?: boolean;
   }
 >(({ className, inset, children, ...props }, ref) => (
   <DropdownMenuPrimitive.SubTrigger
@@ -36,10 +46,12 @@ const DropdownMenuSubTrigger = React.forwardRef<
     {children}
     <ChevronRight className="ml-auto h-4 w-4" />
   </DropdownMenuPrimitive.SubTrigger>
-))
+));
+// 设置 DropdownMenuSubTrigger 组件的显示名称，以便在调试时识别
 DropdownMenuSubTrigger.displayName =
-  DropdownMenuPrimitive.SubTrigger.displayName
+  DropdownMenuPrimitive.SubTrigger.displayName;
 
+// 定义 DropdownMenuSubContent 组件，它是子菜单的内容部分
 const DropdownMenuSubContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
@@ -52,10 +64,12 @@ const DropdownMenuSubContent = React.forwardRef<
     )}
     {...props}
   />
-))
+));
+// 设置 DropdownMenuSubContent 组件的显示名称，以便在调试时识别
 DropdownMenuSubContent.displayName =
-  DropdownMenuPrimitive.SubContent.displayName
+  DropdownMenuPrimitive.SubContent.displayName;
 
+// 定义 DropdownMenuContent 组件，它是下拉菜单的内容部分
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
@@ -71,13 +85,15 @@ const DropdownMenuContent = React.forwardRef<
       {...props}
     />
   </DropdownMenuPrimitive.Portal>
-))
-DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
+));
+// 设置 DropdownMenuContent 组件的显示名称，以便在调试时识别
+DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
+// 定义 DropdownMenuItem 组件，它是下拉菜单项
 const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
-    inset?: boolean
+    inset?: boolean;
   }
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Item
@@ -89,9 +105,11 @@ const DropdownMenuItem = React.forwardRef<
     )}
     {...props}
   />
-))
-DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
+));
+// 设置 DropdownMenuItem 组件的显示名称，以便在调试时识别
+DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
+// 定义 DropdownMenuCheckboxItem 组件，它是带有复选框的下拉菜单项
 const DropdownMenuCheckboxItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
@@ -112,10 +130,12 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     </span>
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
-))
+));
+// 设置 DropdownMenuCheckboxItem 组件的显示名称，以便在调试时识别
 DropdownMenuCheckboxItem.displayName =
-  DropdownMenuPrimitive.CheckboxItem.displayName
+  DropdownMenuPrimitive.CheckboxItem.displayName;
 
+// 定义 DropdownMenuRadioItem 组件，它是带有单选按钮的下拉菜单项
 const DropdownMenuRadioItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
@@ -135,66 +155,7 @@ const DropdownMenuRadioItem = React.forwardRef<
     </span>
     {children}
   </DropdownMenuPrimitive.RadioItem>
-))
-DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
-
-const DropdownMenuLabel = React.forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & {
-    inset?: boolean
-  }
->(({ className, inset, ...props }, ref) => (
-  <DropdownMenuPrimitive.Label
-    ref={ref}
-    className={cn(
-      "px-2 py-1.5 text-sm font-semibold",
-      inset && "pl-8",
-      className
-    )}
-    {...props}
-  />
-))
-DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
-
-const DropdownMenuSeparator = React.forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Separator
-    ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-muted", className)}
-    {...props}
-  />
-))
-DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
-
-const DropdownMenuShortcut = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
-  return (
-    <span
-      className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
-      {...props}
-    />
-  )
-}
-DropdownMenuShortcut.displayName = "DropdownMenuShortcut"
-
-export {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuCheckboxItem,
-  DropdownMenuRadioItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuRadioGroup,
-}
+));
+// 设置 DropdownMenuRadioItem 组件的显示名称，以便在调试时识别
+DropdownMenuRadioItem.displayName =
+  DropdownMenuPrimitive

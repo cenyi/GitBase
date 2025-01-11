@@ -1,22 +1,33 @@
-import type { Config } from "tailwindcss"
+// 导入 Config 类型，用于定义 Tailwind CSS 配置
+import type { Config } from "tailwindcss";
 
+// 定义配置对象
 const config = {
+  // 启用暗色模式，并使用 class 进行切换
   darkMode: ["class"],
+  // 定义要扫描的文件路径，用于提取样式类
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
+  // 定义前缀，这里为空，表示不使用前缀
   prefix: "",
+  // 定义主题
   theme: {
+    // 定义容器的样式
     container: {
+      // 内容居中
       center: true,
+      // 内边距为 2rem
       padding: "2rem",
+      // 在 2xl 屏幕下宽度为 1400px
       screens: {
         "2xl": "1400px",
       },
     },
+    // 扩展颜色
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -53,11 +64,13 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      // 扩展圆角
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      // 定义关键帧动画
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -68,13 +81,16 @@ const config = {
           to: { height: "0" },
         },
       },
+      // 定义动画
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
+  // 引入插件
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+// 导出配置对象
+export default config;

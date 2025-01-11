@@ -1,6 +1,11 @@
 // components/Footer.js
 import Link from 'next/link';
 
+/**
+ * 定义一个名为 Footer 的 React 组件，用于渲染页面的页脚部分。
+ * 
+ * @returns {JSX.Element} 渲染的页脚组件。
+ */
 export function Footer() {
   return (
     <footer className="bg-gray-100 border-t border-gray-200">
