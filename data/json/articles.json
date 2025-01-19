@@ -3,7 +3,7 @@
     "title": "Accessing the Admin Panel and Managing Resources in GitBase",
     "description": "How to access the admin panel and manage your resource list in GitBase",
     "date": "2024-08-11T13:14:40.737Z",
-    "lastModified": "2024-08-11T13:14:40Z",
+    "lastModified": "2024-11-06T03:24:55Z",
     "path": "data/md/accessing-admin-managing-resources.md"
   },
   {
@@ -40,5 +40,12 @@
     "date": "2024-08-11T13:16:44.231Z",
     "lastModified": "2024-08-11T13:16:44Z",
     "path": "data/md/managing-articles.md"
+  },
+  {
+    "title": "I Create A Musci Player ",
+    "description": "Use Claude",
+    "date": "2025-01-09T07:23:18.962Z",
+    "lastModified": "2025-01-09T07:23:19Z",
+    "path": "data/md/music-player.md"
   }
 ]
