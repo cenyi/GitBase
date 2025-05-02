@@ -61,12 +61,12 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-gray-600 tracking-wider uppercase">Legal</h3>
             <ul className="mt-1 space-y-1">
               <li>
-                <Link href="/privacy-policy" className="text-base text-gray-500 hover:text-gray-900">
+                <Link href="/privacy" className="text-base text-gray-500 hover:text-gray-900">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="text-base text-gray-500 hover:text-gray-900">
+                <Link href="/terms" className="text-base text-gray-500 hover:text-gray-900">
                   Terms of Service
                 </Link>
               </li>
