@@ -126,6 +126,8 @@ export default function ArticleEditor() {
       }
       // 弹出提示框，显示保存成功
       alert('Article saved successfully');
+      // 保存成功后跳转到文章列表页面
+      window.location.href = '/admin/articles';
     } catch (error) {
       console.error('Error saving article:', error);
       setError('Failed to save article. Please try again.');

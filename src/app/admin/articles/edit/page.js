@@ -12,7 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 // 动态加载 ArticleEditor 组件，设置 ssr 为 false，表示该组件不在服务器端渲染
-const ArticleEditor = dynamic(() => import('@/components/ArticleEditor'), {
+const ArticleEditor = dynamic(() => import('@/components/ArticleEditor').then(mod => {
+  return (props) => <mod.default {...props} onSuccess={() => router.push('/admin/articles')} />;
+}), {
   ssr: false,
 });
 

@@ -122,8 +122,8 @@ export async function DELETE(request) {
       path: decodedPath
     });
     
-    // Delete the file
-    await octokit.repos.deleteFile({
+    // Delete the file with proper error handling
+    const deleteResponse = await octokit.repos.deleteFile({
       owner,
       repo,
       path: decodedPath,
@@ -131,10 +131,18 @@ export async function DELETE(request) {
       sha: fileData.sha
     });
     
+    // Verify deletion was successful
+    if (deleteResponse.status !== 200) {
+      throw new Error('Failed to delete file from GitHub');
+    }
+    
     // Sync articles after deletion
     await syncArticles();
     
-    return NextResponse.json({ message: 'Article deleted successfully' });
+    return NextResponse.json({ 
+      message: 'Article deleted successfully',
+      path: decodedPath 
+    });
   } catch (error) {
     console.error('Error deleting article:', error);
     return NextResponse.json({ error: 'Failed to delete article. Please try again.' }, { status: 500 });
