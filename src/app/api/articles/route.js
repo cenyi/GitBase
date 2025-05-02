@@ -93,6 +93,14 @@ export async function POST(request) {
  */
 async function syncArticles() {
   try {
+    // Verify GitHub token and repository access first
+    try {
+      await octokit.repos.get({ owner, repo });
+    } catch (error) {
+      console.error('GitHub repository access error:', error);
+      throw new Error(`Failed to access repository: ${error.message}`);
+    }
+
     // Fetch all MD files
     const { data: files } = await octokit.repos.getContent({
       owner,
@@ -100,52 +108,77 @@ async function syncArticles() {
       path: mdFolderPath,
     });
 
-    const mdFiles = files.filter(file => file.name.endsWith('.md')); // 筛选出Markdown文件
+    if (!files || !Array.isArray(files)) {
+      throw new Error(`No files found in ${mdFolderPath} directory`);
+    }
+
+    const mdFiles = files.filter(file => file.name.endsWith('.md'));
+
+    if (mdFiles.length === 0) {
+      throw new Error('No Markdown files found in the repository');
+    }
 
     const articles = await Promise.all(mdFiles.map(async file => {
-      const { data } = await octokit.repos.getContent({
-        owner,
-        repo,
-        path: file.path,
-      });
+      try {
+        const { data } = await octokit.repos.getContent({
+          owner,
+          repo,
+          path: file.path,
+        });
 
-      const content = Buffer.from(data.content, 'base64').toString('utf8');
-      const { data: frontMatter, content: articleContent } = matter(content);
+        const content = Buffer.from(data.content, 'base64').toString('utf8');
+        const { data: frontMatter, content: articleContent } = matter(content);
 
-      // Fetch the last commit for this file
-      const { data: commits } = await octokit.repos.listCommits({
-        owner,
-        repo,
-        path: file.path,
-        per_page: 1
-      });
+        // Fetch the last commit for this file
+        const { data: commits } = await octokit.repos.listCommits({
+          owner,
+          repo,
+          path: file.path,
+          per_page: 1
+        });
 
-      const lastModified = commits[0]?.commit.committer.date || data.sha; // 获取文件的最后修改时间
+        const lastModified = commits[0]?.commit.committer.date || data.sha;
 
-      return {
-        title: frontMatter.title,
-        description: frontMatter.description,
-        date: frontMatter.date,
-        lastModified: lastModified,
-        path: file.path,
-      };
+        return {
+          title: frontMatter.title,
+          description: frontMatter.description,
+          date: frontMatter.date,
+          lastModified: lastModified,
+          path: file.path,
+        };
+      } catch (error) {
+        console.error(`Error processing file ${file.path}:`, error);
+        return null;
+      }
     }));
 
-    // Update articles.json
-    const { data: currentFile } = await octokit.repos.getContent({
-      owner,
-      repo,
-      path: articlesJsonPath,
-    });
+    // Filter out any null entries from failed file processing
+    const validArticles = articles.filter(article => article !== null);
 
-    await octokit.repos.createOrUpdateFileContents({
-      owner,
-      repo,
-      path: articlesJsonPath,
-      message: 'Sync articles',
-      content: Buffer.from(JSON.stringify(articles, null, 2)).toString('base64'),
-      sha: currentFile.sha,
-    });
+    if (validArticles.length === 0) {
+      throw new Error('No valid articles could be processed');
+    }
+
+    // Update articles.json
+    try {
+      const { data: currentFile } = await octokit.repos.getContent({
+        owner,
+        repo,
+        path: articlesJsonPath,
+      });
+
+      await octokit.repos.createOrUpdateFileContents({
+        owner,
+        repo,
+        path: articlesJsonPath,
+        message: 'Sync articles',
+        content: Buffer.from(JSON.stringify(validArticles, null, 2)).toString('base64'),
+        sha: currentFile.sha,
+      });
+    } catch (error) {
+      console.error('Error updating articles.json:', error);
+      throw new Error(`Failed to update articles.json: ${error.message}`);
+    }
 
   } catch (error) {
     console.error('Error syncing articles:', error);

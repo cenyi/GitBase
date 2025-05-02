@@ -28,20 +28,20 @@ export default function ResourceList({ resources, showMoreLink = true }) {
           </Link>
         )}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {resources.map((resource, index) => (
-          <Card key={index}>
-            <CardHeader>
+          <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <CardHeader className="space-y-3">
               <a
                 href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
+                className="group text-blue-600 hover:text-blue-700 transition-colors inline-flex items-center gap-1.5"
               >
-                <CardTitle>{resource.name}</CardTitle>
-                <ExternalLink size={16} />
+                <CardTitle className="group-hover:underline decoration-2">{resource.name}</CardTitle>
+                <ExternalLink size={16} className="opacity-70 group-hover:opacity-100 transition-opacity" />
               </a>
-              <CardDescription>{resource.description}</CardDescription>
+              <CardDescription className="text-gray-600 line-clamp-2">{resource.description}</CardDescription>
             </CardHeader>
           </Card>
         ))}

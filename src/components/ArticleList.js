@@ -25,18 +25,18 @@ export default function ArticleList({ articles, showMoreLink = true }) {
           </Link>
         )}
       </div>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6">
         {articles.map(({ id, title, description }) => (
-          <Card key={id}>
-            <CardHeader>
+          <Card key={id} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <CardHeader className="space-y-3">
               <Link 
                 href={`/posts/${id}`}
-                className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
+                className="group text-blue-600 hover:text-blue-700 transition-colors inline-flex items-center gap-1.5"
               >
-                <CardTitle>{title}</CardTitle>
-                →
+                <CardTitle className="group-hover:underline decoration-2">{title}</CardTitle>
+                <span className="opacity-70 group-hover:opacity-100 transition-opacity">→</span>
               </Link>
-              <CardDescription>{description}</CardDescription>
+              <CardDescription className="text-gray-600 line-clamp-2">{description}</CardDescription>
             </CardHeader>
           </Card>
         ))}

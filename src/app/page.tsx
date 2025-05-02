@@ -29,15 +29,17 @@ export default function Home() {
   const allPostsData = getSortedPostsData().slice(0, 6)
 
   return (
-    <div className="container mx-auto py-4 space-y-8"> {/* 主容器，设置了最大宽度、内边距和间距 */}
-      <section className="text-center space-y-0"> {/* 页面的主要部分，包含标题、描述和段落文本 */}
-        <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"> {/* 主标题，使用了不同屏幕尺寸的字体大小 */}
-          GitBase
-        </h1>
-        <h2 className="text-2xl tracking-tighter sm:text-3xl md:text-3xl lg:text-3xl"> {/* 副标题，同样使用了响应式字体大小 */}
-          Open Source Dynamic Website CMS Without Database
-        </h2>
-        <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl"> {/* 段落文本，设置了最大宽度和颜色，同样使用了响应式字体大小 */}
+    <div className="container mx-auto px-4 py-6 md:py-4 space-y-10 md:space-y-12">
+      <section className="text-center space-y-4 md:space-y-6">
+        <div className="space-y-2 md:space-y-4">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            GitBase
+          </h1>
+          <h2 className="text-2xl tracking-tighter sm:text-3xl md:text-4xl lg:text-4xl text-gray-700 dark:text-gray-300">
+            Open Source Dynamic Website CMS Without Database
+          </h2>
+        </div>
+        <p className="mx-auto max-w-[700px] text-gray-600 dark:text-gray-400 md:text-lg leading-relaxed">
           GitBase is a dynamic, database-free website built with Next.js, Tailwind CSS, and Shadcn/UI, featuring a content management system powered by the GitHub API for seamless updates and administration.
         </p>
       </section>

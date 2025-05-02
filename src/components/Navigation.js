@@ -71,11 +71,11 @@ export function Navigation() {
 
   // 返回 Navigation 组件的 JSX 结构
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
+      <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="inline-block font-bold">GitBase</span>
+          <Link href="/" className="flex items-center space-x-2 group">
+            <span className="inline-block font-bold text-lg group-hover:text-blue-600 transition-colors">GitBase</span>
           </Link>
           <nav className="hidden md:flex gap-6">
             {navItems.map((item) => (
@@ -83,8 +83,8 @@ export function Navigation() {
                 key={item.path}
                 href={item.path}
                 className={cn(
-                  "flex items-center text-sm font-medium text-muted-foreground",
-                  item.path === pathname && "text-foreground"
+                  "flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors",
+                  item.path === pathname && "text-foreground font-semibold"
                 )}
               >
                 {item.label}
@@ -97,7 +97,7 @@ export function Navigation() {
             href="https://github.com/qiayue/gitbase"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-blue-600 transition-colors"
           >
             <Github className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
