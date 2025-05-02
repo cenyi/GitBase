@@ -25,7 +25,7 @@ export default function Resources() {
 
   // 返回一个包含 ResourceList 组件的 div 元素，传入 resources 作为 props
   return (
-    <div className="container mx-auto py-12">
+    <div className="container mx-auto py-4">
       <ResourceList resources={resources} showMoreLink={false} />
     </div>
   );

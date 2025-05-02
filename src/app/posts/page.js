@@ -23,7 +23,7 @@ export default function Articles() {
 
   // 返回包含文章列表的页面
   return (
-    <div className="container mx-auto py-12">
+    <div className="container mx-auto py-4">
       {/* 渲染文章列表组件，并传递文章数据和一个布尔值来控制是否显示“显示更多”链接 */}
       <ArticleList articles={allPostsData} showMoreLink={false} />
     </div>
