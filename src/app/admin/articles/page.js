@@ -97,6 +97,28 @@ export default function AdminArticlesPage() {
     fetchArticles(true);
   }, [fetchArticles]);
 
+  /**
+   * 处理删除文章的操作
+   * @param {string} path - 文章路径
+   */
+  const handleDelete = async (path) => {
+    if (!window.confirm('Are you sure you want to delete this article?')) {
+      return;
+    }
+    try {
+      const response = await fetch(`/api/articles?path=${encodeURIComponent(path)}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete article');
+      }
+      await fetchArticles();
+    } catch (error) {
+      console.error('Error deleting article:', error);
+      setError('删除文章失败，请重试。');
+    }
+  };
+
   // 如果正在加载文章，显示加载中的提示
   if (isLoading) return <div className="container mx-auto p-4">Loading...</div>;
   // 如果发生错误，显示错误信息
@@ -135,9 +157,17 @@ export default function AdminArticlesPage() {
               <TableCell>{new Date(article.date).toLocaleDateString()}</TableCell>
               <TableCell>{new Date(article.lastModified).toLocaleString()}</TableCell>
               <TableCell>
-                <Link href={`/admin/articles/edit?path=${encodeURIComponent(article.path)}`}>
-                  <Button>Edit</Button>
-                </Link>
+                <div className="flex gap-2">
+                  <Link href={`/admin/articles/edit?path=${encodeURIComponent(article.path)}`}>
+                    <Button>Edit</Button>
+                  </Link>
+                  <Button 
+                    variant="destructive" 
+                    onClick={() => handleDelete(article.path)}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </TableCell>
             </TableRow>
           ))}

@@ -87,6 +87,60 @@ export async function POST(request) {
   }
 }
 
+export async function DELETE(request) {
+  const { searchParams } = new URL(request.url);
+  const path = searchParams.get('path');
+  const confirm = searchParams.get('confirm');
+  
+  if (!path) {
+    return NextResponse.json({ error: 'Missing path parameter' }, { status: 400 });
+  }
+
+  // 如果没有确认参数，返回需要确认的响应
+  if (!confirm) {
+    return NextResponse.json(
+      { 
+        requiresConfirmation: true,
+        message: '确定要删除这篇文章吗？' 
+      },
+      { status: 200 }
+    );
+  }
+
+  // 如果确认参数不是'true'，返回错误
+  if (confirm !== 'true') {
+    return NextResponse.json({ error: 'Deletion cancelled' }, { status: 400 });
+  }
+
+  try {
+    const decodedPath = decodeURIComponent(path);
+    
+    // Get file SHA first
+    const { data: fileData } = await octokit.repos.getContent({
+      owner,
+      repo,
+      path: decodedPath
+    });
+    
+    // Delete the file
+    await octokit.repos.deleteFile({
+      owner,
+      repo,
+      path: decodedPath,
+      message: `Delete article: ${decodedPath}`,
+      sha: fileData.sha
+    });
+    
+    // Sync articles after deletion
+    await syncArticles();
+    
+    return NextResponse.json({ message: 'Article deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting article:', error);
+    return NextResponse.json({ error: 'Failed to delete article. Please try again.' }, { status: 500 });
+  }
+}
+
 /**
  * 同步更新文章列表。
  * @throws {Error} - 如果同步过程中发生错误。
