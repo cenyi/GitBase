@@ -29,8 +29,8 @@ export default function Home() {
   const allPostsData = getSortedPostsData().slice(0, 6)
 
   return (
-    <div className="container mx-auto py-12 space-y-16"> {/* 主容器，设置了最大宽度、内边距和间距 */}
-      <section className="text-center space-y-4"> {/* 页面的主要部分，包含标题、描述和段落文本 */}
+    <div className="container mx-auto py-4 space-y-8"> {/* 主容器，设置了最大宽度、内边距和间距 */}
+      <section className="text-center space-y-0"> {/* 页面的主要部分，包含标题、描述和段落文本 */}
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"> {/* 主标题，使用了不同屏幕尺寸的字体大小 */}
           GitBase
         </h1>
