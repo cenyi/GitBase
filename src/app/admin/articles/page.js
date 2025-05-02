@@ -106,16 +106,35 @@ export default function AdminArticlesPage() {
       return;
     }
     try {
-      const response = await fetch(`/api/articles?path=${encodeURIComponent(path)}`, {
+      const response = await fetch(`/api/articles?path=${encodeURIComponent(path)}&confirm=true`, {
         method: 'DELETE'
       });
+      
+      const result = await response.json();
+      
       if (!response.ok) {
-        throw new Error('Failed to delete article');
+        throw new Error(result.error || 'Failed to delete article');
       }
+      
+      if (result.requiresConfirmation) {
+        if (window.confirm(result.message)) {
+          // User confirmed, call DELETE again with confirm=true
+          const confirmResponse = await fetch(`/api/articles?path=${encodeURIComponent(path)}&confirm=true`, {
+            method: 'DELETE'
+          });
+          
+          if (!confirmResponse.ok) {
+            throw new Error('Failed to delete article after confirmation');
+          }
+        } else {
+          return; // User cancelled
+        }
+      }
+      
       await fetchArticles();
     } catch (error) {
       console.error('Error deleting article:', error);
-      setError('删除文章失败，请重试。');
+      setError(error.message || '删除文章失败，请重试。');
     }
   };
 
