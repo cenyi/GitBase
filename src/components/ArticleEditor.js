@@ -57,6 +57,7 @@ export default function ArticleEditor() {
   const [article, setArticle] = useState({ title: '', description: '', content: '', path: '' });
   // 定义一个状态变量，用于存储加载状态
   const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   // 定义一个状态变量，用于存储错误信息
   const [error, setError] = useState(null);
   // 使用 useSearchParams 钩子获取 URL 中的查询参数
@@ -114,6 +115,7 @@ export default function ArticleEditor() {
    * 保存文章到服务器。
    */
   const handleSave = async () => {
+    setIsSaving(true);
     try {
       // 发送 POST 请求到 /api/articles 接口，参数为文章对象
       const response = await fetch('/api/articles', {
@@ -131,6 +133,8 @@ export default function ArticleEditor() {
     } catch (error) {
       console.error('Error saving article:', error);
       setError('Failed to save article. Please try again.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -165,7 +169,16 @@ export default function ArticleEditor() {
         rows={20}
       />
       {/* 保存文章按钮 */}
-      <Button onClick={handleSave}>Save Article</Button>
+      <div className="relative">
+        {isSaving && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <div className="bg-white p-4 rounded">Saving...</div>
+          </div>
+        )}
+        <Button onClick={handleSave} disabled={isSaving}>
+          {isSaving ? 'Saving...' : 'Save Article'}
+        </Button>
+      </div>
     </div>
   );
 }
