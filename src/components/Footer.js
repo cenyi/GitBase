@@ -10,7 +10,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-100 border-t border-gray-200">
       <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <div>
             <h3 className="text-sm font-semibold text-gray-600 tracking-wider uppercase">About</h3>
             <p className="mt-2 text-base text-gray-500">
@@ -69,6 +69,26 @@ export function Footer() {
                 <Link href="/terms-of-service" className="text-base text-gray-500 hover:text-gray-900">
                   Terms of Service
                 </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-gray-600 tracking-wider uppercase">Links</h3>
+            <ul className="mt-1 space-y-1">
+              <li>
+                <a href="#" className="text-base text-gray-500 hover:text-gray-900">
+                  Link 1
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-base text-gray-500 hover:text-gray-900">
+                  Link 2
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-base text-gray-500 hover:text-gray-900">
+                  Link 3
+                </a>
               </li>
             </ul>
           </div>
