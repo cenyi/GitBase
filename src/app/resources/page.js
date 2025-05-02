@@ -9,8 +9,30 @@ import ResourceList from '@/components/ResourceList';
  * 定义一个元数据对象，包含页面的标题和描述。
  */
 export const metadata = {
-  title: 'Resources',
-  description: 'Explore our curated list of resources for web development, GitHub, and more.',
+  title: 'Resources - GitBase Open Source CMS | Web Development Tools & GitHub Resources',
+  description: 'Discover curated web development tools, GitHub API resources, and database-free CMS solutions for your projects.',
+  keywords: ['web development resources', 'GitHub tools', 'Next.js resources', 'CMS tools', 'database-free solutions'],
+  openGraph: {
+    title: 'Resources - GitBase Open Source CMS',
+    description: 'Curated web development tools and GitHub resources for database-free CMS solutions',
+    url: 'https://yourdomain.com/resources',
+    siteName: 'GitBase',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-resources.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Resources - GitBase Open Source CMS',
+    description: 'Curated web development tools and GitHub resources for database-free CMS solutions',
+    images: ['https://yourdomain.com/og-resources.jpg'],
+  },
 };
 
 /**

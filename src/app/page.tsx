@@ -11,8 +11,30 @@ import { Metadata } from 'next' // 导入Next.js的Metadata类型
  * 这些元数据将用于搜索引擎优化和在社交媒体上分享。
  */
 export const metadata: Metadata = {
-  title: 'GitBase - Open Source Dynamic Website CMS Without Database', // 页面标题
-  description: 'A Next.js site with Tailwind & Shadcn/UI, using GitHub API for content management. No database needed for dynamic updates.', // 页面描述
+  title: 'GitBase - Open Source Dynamic Website CMS Without Database | Next.js GitHub CMS', // 页面标题
+  description: 'GitBase is an open-source, database-free CMS built with Next.js, Tailwind CSS & Shadcn/UI. Manage content via GitHub API for seamless updates. Perfect for developers.', // 页面描述
+  keywords: ['Next.js CMS', 'GitHub CMS', 'database-free website', 'open source CMS', 'developer tools'],
+  openGraph: {
+    title: 'GitBase - Open Source Dynamic Website CMS Without Database',
+    description: 'Database-free CMS powered by Next.js and GitHub API',
+    url: 'https://yourdomain.com',
+    siteName: 'GitBase',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GitBase - Open Source Dynamic Website CMS Without Database',
+    description: 'Database-free CMS powered by Next.js and GitHub API',
+    images: ['https://yourdomain.com/og-image.jpg'],
+  },
 }
 
 /**

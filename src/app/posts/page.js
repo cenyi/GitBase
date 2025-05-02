@@ -8,8 +8,30 @@ import { getSortedPostsData } from '@/lib/posts';
  * 这些元数据用于 SEO 和在社交媒体上分享时显示。
  */
 export const metadata = {
-  title: 'Articles',
-  description: 'Read our latest articles on web development, GitHub tips, and best practices.',
+  title: 'Articles - GitBase Open Source CMS | Web Development & GitHub Tips',
+  description: 'Explore our latest articles on web development, Next.js, GitHub API integration, and best practices for database-free CMS solutions.',
+  keywords: ['web development articles', 'GitHub tips', 'Next.js tutorials', 'CMS best practices', 'database-free solutions'],
+  openGraph: {
+    title: 'Articles - GitBase Open Source CMS',
+    description: 'Learn web development, GitHub integration and CMS best practices with GitBase articles',
+    url: 'https://yourdomain.com/posts',
+    siteName: 'GitBase',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-articles.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Articles - GitBase Open Source CMS',
+    description: 'Learn web development, GitHub integration and CMS best practices with GitBase articles',
+    images: ['https://yourdomain.com/og-articles.jpg'],
+  },
 };
 
 /**
