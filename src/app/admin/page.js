@@ -157,13 +157,13 @@ export default function AdminPage() {
   // 渲染 AdminPage 组件
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-      <div className="mb-4">
+
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold">Resource Management</h2>
         <Link href="/admin/articles">
           <Button>Manage Articles</Button>
         </Link>
       </div>
-      <h2 className="text-xl font-bold mb-4">Resource Management</h2>
       <Table>
         <TableHeader>
           <TableRow>
