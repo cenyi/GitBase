@@ -14,13 +14,36 @@ const inter = Inter({ subsets: ['latin'] })
  * 定义元数据对象，用于设置网页的标题和描述。
  */
 export const metadata: Metadata = {
-  // 默认标题为 'GitBase'，模板为 '%s | GitBase'，其中 %s 会被具体页面的标题替换
   title: {
     default: 'GitBase',
     template: '%s | GitBase'
   },
-  // 网页描述为 'Open source dynamic website without database, built with Next.js and GitHub API'
   description: 'Open source dynamic website without database, built with Next.js and GitHub API',
+  keywords: ['GitHub', 'Next.js', '无数据库网站', '开源项目'],
+  openGraph: {
+    title: 'GitBase',
+    description: 'Open source dynamic website without database, built with Next.js and GitHub API',
+    url: 'https://yourdomain.com',
+    siteName: 'GitBase',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GitBase',
+    description: 'Open source dynamic website without database, built with Next.js and GitHub API',
+    images: ['https://yourdomain.com/og-image.jpg'],
+  },
+  alternates: {
+    canonical: 'https://yourdomain.com',
+  },
 }
 
 /**

@@ -10,8 +10,8 @@ import ResourceList from '@/components/ResourceList';
  */
 export const metadata = {
   title: 'Resources - GitBase Open Source CMS | Web Development Tools & GitHub Resources',
-  description: 'Discover curated web development tools, GitHub API resources, and database-free CMS solutions for your projects.',
-  keywords: ['web development resources', 'GitHub tools', 'Next.js resources', 'CMS tools', 'database-free solutions'],
+  description: 'Discover our curated collection of web development tools, GitHub API resources, and innovative database-free CMS solutions to enhance your development workflow and project efficiency.',
+  keywords: ['web development resources', 'GitHub tools', 'Next.js resources', 'CMS tools', 'database-free solutions', '前端开发资源', 'GitHub工具', 'Next.js资源', '无数据库解决方案'],
   openGraph: {
     title: 'Resources - GitBase Open Source CMS',
     description: 'Curated web development tools and GitHub resources for database-free CMS solutions',

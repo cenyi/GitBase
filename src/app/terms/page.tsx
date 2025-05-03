@@ -1,4 +1,31 @@
 // app/terms-of-service/page.tsx
+export const metadata = {
+  title: 'Terms of Service - GitBase Open Source CMS | Usage Guidelines',
+  description: 'Review the terms and conditions for using GitBase, an open-source database-free CMS. Understand your rights and responsibilities when using our platform.',
+  keywords: ['GitBase terms', 'website terms of service', 'open source CMS terms', '使用条款', '服务协议'],
+  openGraph: {
+    title: 'Terms of Service - GitBase Open Source CMS',
+    description: 'Review the terms and conditions for using GitBase platform',
+    url: 'https://yourdomain.com/terms',
+    siteName: 'GitBase',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-terms.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service - GitBase Open Source CMS',
+    description: 'Review the terms and conditions for using GitBase platform',
+    images: ['https://yourdomain.com/og-terms.jpg'],
+  },
+};
+
 export default function TermsOfService() {
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">

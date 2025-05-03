@@ -9,8 +9,8 @@ import { getSortedPostsData } from '@/lib/posts';
  */
 export const metadata = {
   title: 'Articles - GitBase Open Source CMS | Web Development & GitHub Tips',
-  description: 'Explore our latest articles on web development, Next.js, GitHub API integration, and best practices for database-free CMS solutions.',
-  keywords: ['web development articles', 'GitHub tips', 'Next.js tutorials', 'CMS best practices', 'database-free solutions'],
+  description: 'Explore our latest technical articles on web development with Next.js, GitHub API integration, and best practices for building database-free CMS solutions. Learn from our expert tutorials and guides.',
+  keywords: ['web development articles', 'GitHub tips', 'Next.js tutorials', 'CMS best practices', 'database-free solutions', '前端开发文章', 'GitHub教程', 'Next.js指南', '无数据库CMS'],
   openGraph: {
     title: 'Articles - GitBase Open Source CMS',
     description: 'Learn web development, GitHub integration and CMS best practices with GitBase articles',

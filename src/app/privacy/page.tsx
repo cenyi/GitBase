@@ -1,4 +1,31 @@
 // app/privacy-policy/page.tsx
+export const metadata = {
+  title: 'Privacy Policy - GitBase Open Source CMS | Data Protection & Security',
+  description: 'Learn how GitBase protects your personal data and respects your privacy. Our privacy policy explains what information we collect and how we use it.',
+  keywords: ['GitBase privacy policy', 'data protection', 'website security', 'personal data collection', '隐私政策', '数据保护', '网站安全'],
+  openGraph: {
+    title: 'Privacy Policy - GitBase Open Source CMS',
+    description: 'Learn how we protect your personal data and respect your privacy',
+    url: 'https://yourdomain.com/privacy',
+    siteName: 'GitBase',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-privacy.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy - GitBase Open Source CMS',
+    description: 'Learn how we protect your personal data and respect your privacy',
+    images: ['https://yourdomain.com/og-privacy.jpg'],
+  },
+};
+
 export default function PrivacyPolicy() {
   return (
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
