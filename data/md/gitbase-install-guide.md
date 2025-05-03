@@ -23,7 +23,7 @@ This guide will walk you through the process of setting up GitBase on your local
 3. Run the following command:
 
 ```bash
-git clone https://github.com/qiayue/gitbase.git
+git clone https://github.com/cenyi/GitBase/tree/my-master.git
 cd gitbase
 ```
 
@@ -116,4 +116,4 @@ If you encounter any issues:
 
 Congratulations! You've successfully set up and deployed your own GitBase instance. Enjoy your new database-free, GitHub-powered website!
 
-For more help, refer to the [GitBase documentation](https://github.com/qiayue/gitbase) or open an issue on the GitHub repository.
+For more help, refer to the [GitBase documentation](https://github.com/cenyi/GitBase/tree/my-master) or open an issue on the GitHub repository.

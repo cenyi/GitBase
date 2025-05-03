@@ -32,7 +32,7 @@
 
 1. Clone the repository:
    ```
-   git clone https://github.com/qiayue/gitbase.git
+   git clone https://github.com/cenyi/GitBase/tree/my-master.git
    cd gitbase
    ```
 
@@ -87,7 +87,7 @@ We welcome contributions to GitBase! Please read our [Contributing Guide](https:
 
 ## License
 
-GitBase is open-source software licensed under the [MIT license](https://github.com/qiayue/gitbase/?tab=MIT-1-ov-file).
+GitBase is open-source software licensed under the [MIT license](https://github.com/cenyi/GitBase/tree/my-master/?tab=MIT-1-ov-file).
 
 ## Support
 

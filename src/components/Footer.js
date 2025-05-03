@@ -46,7 +46,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://github.com/qiayue/gitbase" target="_blank" className="text-base text-gray-500 hover:text-gray-900">
+                <a href="https://github.com/cenyi/GitBase/tree/my-master" target="_blank" className="text-base text-gray-500 hover:text-gray-900">
                   GitHub
                 </a>
               </li>
