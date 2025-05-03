@@ -11,6 +11,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 // 导入自定义的 Table、TableBody、TableCell、TableHead 和 TableHeader 组件
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+// 导入 Select 组件及其相关组件
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 /**
  * AdminPage 是一个 React 组件，用于管理资源。
  * 它使用了 Next.js 的客户端路由，并与 API 进行交互以获取和更新资源。
@@ -21,7 +23,7 @@ export default function AdminPage() {
   // 定义状态变量 resources，用于存储资源列表
   const [resources, setResources] = useState([]);
   // 定义状态变量 newResource，用于存储新资源的信息
-  const [newResource, setNewResource] = useState({ name: '', description: '', url: '' });
+  const [newResource, setNewResource] = useState({ name: '', description: '', url: '', category: 'ALL' });
   // 定义状态变量 editingIndex，用于存储当前正在编辑的资源的索引
   const [editingIndex, setEditingIndex] = useState(null);
   // 定义状态变量 isLoading，用于标识是否正在加载资源
@@ -194,6 +196,7 @@ export default function AdminPage() {
             <TableHead>Name</TableHead>
             <TableHead>Description</TableHead>
             <TableHead>URL</TableHead>
+            <TableHead>Category</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -202,55 +205,110 @@ export default function AdminPage() {
             <TableRow key={index}>
               <TableCell>
                 {editingIndex === index ? (
-                  <Input name="name" value={resource.name} onChange={(e) => handleInputChange(e, index)} />
+                  <Input
+                    name="name"
+                    value={resource.name}
+                    onChange={(e) => handleInputChange(e, index)}
+                  />
                 ) : (
                   resource.name
                 )}
               </TableCell>
               <TableCell>
                 {editingIndex === index ? (
-                  <Input name="description" value={resource.description} onChange={(e) => handleInputChange(e, index)} />
+                  <Input
+                    name="description"
+                    value={resource.description}
+                    onChange={(e) => handleInputChange(e, index)}
+                  />
                 ) : (
                   resource.description
                 )}
               </TableCell>
               <TableCell>
                 {editingIndex === index ? (
-                  <Input name="url" value={resource.url} onChange={(e) => handleInputChange(e, index)} />
+                  <Input
+                    name="url"
+                    value={resource.url}
+                    onChange={(e) => handleInputChange(e, index)}
+                  />
                 ) : (
-                  resource.url
+                  <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                    {resource.url}
+                  </a>
                 )}
               </TableCell>
               <TableCell>
-                <div className="flex gap-2">
-                  {editingIndex === index ? (
-                    <>
-                      <Button onClick={() => handleSave(index)}>Save</Button>
-                      <Button variant="destructive" onClick={() => handleDelete(index)}>Delete</Button>
-                    </>
-                  ) : (
+                {editingIndex === index ? (
+                  <Select 
+                    value={resource.category || 'ALL'} 
+                    onValueChange={(value) => {
+                      const updatedResources = [...resources];
+                      updatedResources[index].category = value;
+                      setResources(updatedResources);
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="ALL">All</SelectItem>
+                      <SelectItem value="FRONTEND">Frontend</SelectItem>
+                      <SelectItem value="BACKEND">Backend</SelectItem>
+                      <SelectItem value="DATABASE">Database</SelectItem>
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  resource.category || 'ALL'
+                )}
+              </TableCell>
+              <TableCell>
+                {editingIndex === index ? (
+                  <div className="flex gap-2">
+                    <Button onClick={() => handleSave(index)}>Save</Button>
+                    <Button variant="outline" onClick={() => setEditingIndex(null)}>Cancel</Button>
+                  </div>
+                ) : (
+                  <div className="flex gap-2">
                     <Button onClick={() => handleEdit(index)}>Edit</Button>
-                  )}
-                </div>
+                    <Button variant="destructive" onClick={() => handleDelete(index)}>Delete</Button>
+                  </div>
+                )}
               </TableCell>
             </TableRow>
           ))}
-          <TableRow>
-            <TableCell>
-              <Input name="name" value={newResource.name} onChange={handleInputChange} placeholder="New resource name" />
-            </TableCell>
-            <TableCell>
-              <Input name="description" value={newResource.description} onChange={handleInputChange} placeholder="New resource description" />
-            </TableCell>
-            <TableCell>
-              <Input name="url" value={newResource.url} onChange={handleInputChange} placeholder="New resource URL" />
-            </TableCell>
-            <TableCell>
-              <Button onClick={() => handleSave(-1)}>Add New</Button>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+        <TableRow>
+              <TableCell>
+                <Input name="name" value={newResource.name} onChange={handleInputChange} placeholder="New resource name" />
+              </TableCell>
+              <TableCell>
+                <Input name="description" value={newResource.description} onChange={handleInputChange} placeholder="New resource description" />
+              </TableCell>
+              <TableCell>
+                <Input name="url" value={newResource.url} onChange={handleInputChange} placeholder="New resource URL" />
+              </TableCell>
+              <TableCell>
+                <Select 
+                  value={newResource.category || 'ALL'} 
+                  onValueChange={(value) => setNewResource({...newResource, category: value})}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="ALL">All</SelectItem>
+                    <SelectItem value="FRONTEND">Frontend</SelectItem>
+                    <SelectItem value="BACKEND">Backend</SelectItem>
+                    <SelectItem value="DATABASE">Database</SelectItem>
+                  </SelectContent>
+                </Select>
+              </TableCell>
+              <TableCell>
+                <Button onClick={() => handleSave(-1)}>Add New</Button>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
     </div>
   );
 }

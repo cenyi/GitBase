@@ -38,6 +38,15 @@ export default function ResourceList({ resources }) {
                 <ExternalLink size={16} className="opacity-70 group-hover:opacity-100 transition-opacity" />
               </a>
               <CardDescription className="text-gray-600 line-clamp-2">{resource.description}</CardDescription>
+              {resource.tags && (
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {resource.tags.map((tag, i) => (
+                    <span key={i} className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </CardHeader>
           </Card>
         ))}
