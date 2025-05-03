@@ -74,7 +74,7 @@ export default function Home() {
             3. 渐变方向修改需保持from-{color}和to-{color}配对使用
           */}
           <h1 className="text-2xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              CMS BY GitBase
+              CMS BY GITBASE
           </h1>
           {/* <h2 className="text-xl tracking-tighter sm:text-2xl md:text-3xl lg:text-3xl text-gray-700 dark:text-gray-300">
             Open Source Dynamic Website CMS Without Database
