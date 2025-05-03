@@ -46,5 +46,11 @@
     "description": "非常流行的数据库",
     "url": "",
     "category": "DATABASE"
+  },
+  {
+    "name": "Java",
+    "description": "非常流行的后端高级开发语言",
+    "url": "",
+    "category": "BACKEND"
   }
 ]
