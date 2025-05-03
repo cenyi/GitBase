@@ -10,11 +10,16 @@ export function Footer() {
   return (
     <footer className="bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-200 dark:from-gray-800 dark:to-gray-900 dark:border-gray-700">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-8">
           <div className="md:col-span-2">
             <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 tracking-wider uppercase mb-4">About</h3>
             <p className="mt-2 text-base text-gray-500">
               GitBase is an open-source dynamic website solution without a traditional database, built with Next.js and powered by GitHub.
+            </p>
+          </div>
+          <div className="md:col-span-1">
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 tracking-wider uppercase mb-4"></h3>
+            <p className="mt-2 text-base text-gray-500">
             </p>
           </div>
           <div>
