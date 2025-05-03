@@ -12,8 +12,8 @@ export function middleware(request) {
   // 获取请求的路径
   const path = request.nextUrl.pathname;
 
-  // 只检查以 /admin 开头的路径的认证
-  if (path.startsWith('/admin')) {
+  // 检查以 /admin 或 /admin/resources 开头的路径的认证
+  if (path.startsWith('/admin') && !path.startsWith('/admin/resources')) {
     // 从 cookie 中获取 auth_token
     const token = request.cookies.get('auth_token')?.value;
     // 验证 token 是否有效
@@ -35,6 +35,7 @@ export function middleware(request) {
 export const config = {
   // 匹配所有以 /admin 开头的路径
   matcher: [
-    '/admin/:path*',  
+    '/admin/:path*',
+    '/admin/resources/:path*',
   ],
 };

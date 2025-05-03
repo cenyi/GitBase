@@ -40,9 +40,7 @@ export default function AboutPage() {
         
         <h2 className="text-xl font-semibold mt-6 mb-4">Our Story</h2>
         <p className="mb-4">
-          Founded in 2023, GitBase was created to solve the challenge of building dynamic websites 
-          without the overhead of database management. By using GitHub as a content repository, 
-          we enable seamless content updates with full version control capabilities.
+          GitBase is an open-source dynamic website solution without a traditional database, built with Next.js, Tailwind CSS, and Shadcn/UI. It leverages GitHub as a content management system, providing a seamless way to create and manage website content.
         </p>
         
         <h2 className="text-xl font-semibold mt-6 mb-4">Technology Stack</h2>

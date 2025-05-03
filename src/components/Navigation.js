@@ -105,7 +105,7 @@ export function Navigation() {
           {!isLoading && (
             isLoggedIn ? (
               <>
-                <Link href="/admin">
+                <Link href="/admin/resources">
                   <Button variant="ghost">Admin</Button>
                 </Link>
                 <Button onClick={handleLogout} variant="outline">Logout</Button>

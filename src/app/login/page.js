@@ -42,7 +42,7 @@ export default function LoginPage() {
     // 如果响应状态码为 200，表示登录成功
     if (response.ok) {
       // 使用 router.push 方法导航到 /admin 页面
-      router.push('/admin');
+      router.push('/admin/resources');
     } else {
       // 如果登录失败，显示错误消息
       alert('Invalid password');
