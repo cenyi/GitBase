@@ -93,6 +93,53 @@ BASE_URL=https://yourdomain.com
 - 只有配置的 ADMIN_USERS 可以访问管理后台
 - 普通用户只能查看公开内容
 
+## 自定义业务网站指南
+
+### 1. 品牌标识修改
+1. **网站标题与描述**
+   - 修改 `src/app/page.tsx` 中的 `metadata.title` 和 `metadata.description`
+   - 更新所有页面的 OpenGraph 和 Twitter 卡片元数据
+
+2. **Logo与品牌图片**
+   - 替换 `public/` 目录下的品牌图片 (vercel.svg, next.svg 等)
+   - 更新 `metadata.images` 中的图片路径
+
+### 2. SEO元数据优化
+1. **基础SEO设置**
+   - 修改 `src/app/page.tsx` 中的结构化数据 (JSON-LD)
+   - 更新 `url` 字段为您的域名
+
+2. **页面专属SEO**
+   - 为每个页面单独设置标题、描述和关键词
+   - 示例文件：`about/page.tsx`, `privacy/page.tsx`
+
+### 3. 页面内容定制
+1. **首页内容**
+   - 修改 `src/app/page.tsx` 中的欢迎语和核心功能描述
+   - 更新合作伙伴 Logo 和链接
+
+2. **关于页面**
+   - 在 `about/page.tsx` 中更新团队信息和公司介绍
+   - 修改结构化数据中的联系方式
+
+3. **条款与隐私政策**
+   - 根据业务需求修改 `terms/page.tsx` 和 `privacy/page.tsx`
+   - 更新最后修改日期
+
+### 4. 功能模块调整
+1. **导航菜单**
+   - 修改 `src/app/layout.tsx` 中的导航链接
+   - 添加/删除页面路由
+
+2. **样式主题**
+   - 在 `tailwind.config.js` 中修改品牌色
+   - 调整 `globals.css` 中的全局样式
+
+## 注意事项
+1. 修改后请清除浏览器缓存测试效果
+2. 建议使用 Lighthouse 工具检查SEO优化效果
+3. 部署前请确保所有测试链接有效
+
 ## 部署指南
 
 ### Vercel 部署
