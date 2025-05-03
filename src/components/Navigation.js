@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 const navItems = [
   { path: '/', label: 'Home' },
   { path: '/resources', label: 'Resources' },
-  { path: '/posts', label: 'Articles' },
+  
 ];
 
 // 定义 Navigation 组件

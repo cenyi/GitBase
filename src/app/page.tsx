@@ -54,20 +54,39 @@ export default function Home() {
     <div className="container mx-auto px-4 py-6 md:py-4 space-y-10 md:space-y-12">
       <section className="text-center space-y-4 md:space-y-6">
         <div className="space-y-2 md:space-y-4">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-            GitBase
+          {/* 
+            h1标题样式说明：
+            - 基础字体大小：text-2xl (1.875rem/30px)，可调整范围text-xs(0.75rem)到text-9xl(8rem)
+            - 响应式断点设置：
+              * sm:≥640px, md:≥768px, lg:≥1024px, xl:≥1280px
+              * 建议保持当前断点比例关系
+            - 字体粗细：font-bold(700)，可选值：font-thin(100)到font-black(900)
+            - 字距调整：tracking-tighter(-0.05em)，可选值：tracking-tight(-0.025em)到tracking-widest(0.1em)
+            - 渐变背景色：
+              * from-blue-600(#2563eb)到blue-400(#60a5fa)
+              * 颜色代码格式：blue-{100-900}或自定义[#RRGGBB]
+              * 方向：可改为to-right/to-left/to-top/to-bottom
+            - 背景裁剪：bg-clip-text(必须配合text-transparent使用)
+            - 文字透明：text-transparent(必须设置)
+            调整指南：
+            1. 修改字体大小类名时保持响应式比例关系
+            2. 颜色调整建议使用Tailwind内置颜色或测试对比度≥4.5:1
+            3. 渐变方向修改需保持from-{color}和to-{color}配对使用
+          */}
+          <h1 className="text-2xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+              CMS BY GitBase
           </h1>
-          <h2 className="text-2xl tracking-tighter sm:text-3xl md:text-4xl lg:text-4xl text-gray-700 dark:text-gray-300">
+          {/* <h2 className="text-xl tracking-tighter sm:text-2xl md:text-3xl lg:text-3xl text-gray-700 dark:text-gray-300">
             Open Source Dynamic Website CMS Without Database
-          </h2>
+          </h2> */}
         </div>
         <p className="mx-auto max-w-[700px] text-gray-600 dark:text-gray-400 md:text-lg leading-relaxed">
-          GitBase is a dynamic, database-free website built with Next.js, Tailwind CSS, and Shadcn/UI, featuring a content management system powered by the GitHub API for seamless updates and administration.
+            GitBase is an open-source, database free, and amazing template website
         </p>
       </section>
 
       <ResourceList resources={resources} /> {/* 资源列表组件，传入了资源数据 */}
-      <ArticleList articles={allPostsData} /> {/* 文章列表组件，传入了文章数据 */}
+      
     </div>
   )
 }
