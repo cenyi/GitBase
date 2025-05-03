@@ -34,5 +34,11 @@
     "description": "mongodb非结构化数据库",
     "url": "",
     "category": "DATABASE"
+  },
+  {
+    "name": "sqlite",
+    "description": "嵌入式数据库",
+    "url": "",
+    "category": "DATABASE"
   }
 ]
