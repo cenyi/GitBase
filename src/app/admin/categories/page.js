@@ -64,8 +64,18 @@ export default function CategoriesPage() {
         ...prev,
         [name]: value
       }));
+      setEditingIndex(-1); // 强制进入新建模式
     }
     return value;
+  };
+
+  // 新增专用方法处理新建逻辑
+  const handleAddNew = () => {
+    setEditingIndex(-1);
+    setNewCategory({ name: '', description: '' });
+    setErrors({ name: false, description: false });
+    // 立即触发保存操作
+    handleSave(-1);
   };
 
   const handleEdit = (index) => {
@@ -100,45 +110,84 @@ export default function CategoriesPage() {
 
   const [errors, setErrors] = useState({ name: false, description: false });
 
-const handleSave = async (index) => {
-  const currentName = index === -1 ? newCategory.name : categories[index]?.name || '';
-  const currentDesc = index === -1 ? newCategory.description : categories[index]?.description || '';
-  
-  if (!currentName.trim() && !currentDesc.trim()) {
-    setErrors({ name: true, description: true });
-    return;
-  } else if (!currentName.trim()) {
-    setErrors({ ...errors, name: true });
-    return;
-  } else if (!currentDesc.trim()) {
-    setErrors({ ...errors, description: true });
-    return;
-  }
-  
-  setErrors({ name: false, description: false });
-  
-  let updatedCategories = [...categories];
-  if (index === -1) {
-    updatedCategories.push(newCategory);
-    setNewCategory({ name: '', description: '' });
-  }
-  
-  try {
-    const response = await fetch('/api/categories', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedCategories),
-    });
-    if (!response.ok) {
-      throw new Error('Failed to save categories');
+  const handleSave = async (index) => {
+    const currentName = index === -1 ? newCategory.name : categories[index]?.name || '';
+    const currentDesc = index === -1 ? newCategory.description : categories[index]?.description || '';
+    
+    // 如果是新增操作且字段都为空，则阻止提交
+    if (index === -1 && (!currentName.trim() && !currentDesc.trim())) {
+      setErrors({ name: true, description: true });
+      setError('Please enter at least one field for a new category');
+      return;
+    } 
+    
+    // 如果是新增操作且名称为空，则设置错误
+    if (index === -1 && !currentName.trim()) {
+      setErrors({ ...errors, name: true });
+      setError('Category name is required for new categories');
+      return;
     }
-    await fetchCategories();
-    setEditingIndex(null);
-  } catch (error) {
-    console.error('Error saving categories:', error);
-    setError('Failed to save category. Please try again.');
-  }
-};
+    
+    // 如果是新增操作且描述为空，则设置错误
+    if (index === -1 && !currentDesc.trim()) {
+      setErrors({ ...errors, description: true });
+      setError('Category description is required for new categories');
+      return;
+    }
+    
+    // 如果是编辑操作且字段都为空，则阻止提交
+    if (index !== -1 && (!currentName.trim() && !currentDesc.trim())) {
+      setErrors({ name: true, description: true });
+      setError('Please enter at least one field for the category');
+      return;
+    } 
+    
+    // 如果是编辑操作且名称为空，则设置错误
+    if (index !== -1 && !currentName.trim()) {
+      setErrors({ ...errors, name: true });
+      setError('Category name is required');
+      return;
+    }
+    
+    // 如果是编辑操作且描述为空，则设置错误
+    if (index !== -1 && !currentDesc.trim()) {
+      setErrors({ ...errors, description: true });
+      setError('Category description is required');
+      return;
+    }
+    
+    setErrors({ name: false, description: false });
+    setError(null);
+    
+    try {
+      // 构造纯数组格式
+      const updatedCategories = index === -1 
+        ? [...categories, newCategory] // 添加新分类
+        : [...categories]; // 创建副本确保状态更新
+      
+      const response = await fetch('/api/categories', {
+        method: 'PUT', // 使用PUT表示替换整个资源
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedCategories) // 直接序列化数组
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to save categories: ${response.status} ${response.statusText}`);
+      }
+      
+      // 使用服务器返回的数据更新状态
+      const savedData = await response.json();
+      setCategories(savedData);
+      
+      // 强制刷新数据列表
+      await fetchCategories();
+      
+      setEditingIndex(null);
+    } catch (error) {
+      console.error('Error saving categories:', error);
+      setError(`Failed to save categories: ${error.message}. Please try again.`);
+    }
+  };
 
   if (isLoading) {
     return <div className="container mx-auto p-4">Loading...</div>;
@@ -185,7 +234,7 @@ const handleSave = async (index) => {
   {errors.description && <p className="text-red-500 text-xs mt-1">Category Description is required</p>}
 </div>
         <Button 
-        onClick={() => handleSave(editingIndex === -1 ? -1 : editingIndex)}
+        onClick={handleAddNew} // 绑定到专用新建方法
         className="bg-blue-600 hover:bg-blue-700 text-white w-24"
         >
         {'Add New'}
