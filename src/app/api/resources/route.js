@@ -108,3 +108,33 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Failed to update resources' }, { status: 500 });
   }
 }
+
+export async function DELETE() {
+  try {
+    // 获取 GitHub 仓库中当前文件的内容
+    const { data: currentFile } = await octokit.repos.getContent({
+      owner,
+      repo,
+      path: githubPath,
+    });
+
+    // 删除 GitHub 仓库中的文件
+    await octokit.repos.deleteFile({
+      owner,
+      repo,
+      path: githubPath,
+      message: 'Delete resources',
+      sha: currentFile.sha,
+    });
+
+    // 删除本地文件
+    //fs.unlinkSync(localPath);
+
+    // 返回删除成功的响应
+    return NextResponse.json({ message: 'Resources deleted successfully' });
+  } catch (error) {
+    // 如果删除资源失败，记录错误并返回错误响应
+    console.error('Error deleting resources:', error);
+    return NextResponse.json({ error: 'Failed to delete resources' }, { status: 500 });
+  }
+}

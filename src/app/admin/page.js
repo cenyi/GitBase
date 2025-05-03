@@ -118,6 +118,32 @@ export default function AdminPage() {
    * 保存资源或新资源。
    * @param {number} index - 要保存的资源的索引，如果是新资源则为 -1。
    */
+  const handleDelete = async (index) => {
+    if (!window.confirm('Are you sure you want to delete this resource?')) {
+      return;
+    }
+    try {
+      const updatedResources = [...resources];
+      updatedResources.splice(index, 1);
+      
+      const response = await fetch('/api/resources', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedResources),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to delete resource');
+      }
+      
+      await fetchResources();
+      setEditingIndex(null);
+    } catch (error) {
+      console.error('Error deleting resource:', error);
+      setError('Failed to delete resource. Please try again.');
+    }
+  };
+
   const handleSave = async (index) => {
     let updatedResources = [...resources];
     if (index === -1) {
@@ -198,11 +224,16 @@ export default function AdminPage() {
                 )}
               </TableCell>
               <TableCell>
-                {editingIndex === index ? (
-                  <Button onClick={() => handleSave(index)}>Save</Button>
-                ) : (
-                  <Button onClick={() => handleEdit(index)}>Edit</Button>
-                )}
+                <div className="flex gap-2">
+                  {editingIndex === index ? (
+                    <>
+                      <Button onClick={() => handleSave(index)}>Save</Button>
+                      <Button variant="destructive" onClick={() => handleDelete(index)}>Delete</Button>
+                    </>
+                  ) : (
+                    <Button onClick={() => handleEdit(index)}>Edit</Button>
+                  )}
+                </div>
               </TableCell>
             </TableRow>
           ))}

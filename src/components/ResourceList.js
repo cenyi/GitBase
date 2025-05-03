@@ -1,4 +1,4 @@
-// components/ResourceList.js
+'use client';
 import Link from 'next/link' // 导入Link组件，用于实现内部链接
 import { ExternalLink } from 'lucide-react' // 导入ExternalLink图标组件
 import {
@@ -17,6 +17,7 @@ import {
  * @param {boolean} [props.showMoreLink=true] - 是否显示“更多资源”链接。
  * @returns {JSX.Element} - 渲染的资源列表组件。
  */
+
 export default function ResourceList({ resources, showMoreLink = true }) {
   return (
     <section>
