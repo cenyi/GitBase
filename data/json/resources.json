@@ -10,11 +10,6 @@
     "url": "https://tailwindcss.com/"
   },
   {
-    "name": "Shadcn/ui",
-    "description": "Re-usable components built with Radix UI and Tailwind CSS",
-    "url": "https://ui.shadcn.com/"
-  },
-  {
     "name": "Vercel",
     "description": "Cloud platform for static sites and Serverless Functions",
     "url": "https://vercel.com/"
