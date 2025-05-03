@@ -17,7 +17,8 @@
   {
     "name": "Github.com",
     "description": "The world's leading platform for version control and collaborative software development.",
-    "url": "https://github.com/"
+    "url": "https://github.com/",
+    "category": "FRONTEND"
   },
   {
     "name": "Woy.ai",
