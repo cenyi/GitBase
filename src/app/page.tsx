@@ -3,7 +3,6 @@ import fs from 'fs' // 导入文件系统模块
 import path from 'path' // 导入路径处理模块
 import { getSortedPostsData } from '@/lib/posts' // 导入获取排序后的文章数据的函数
 import ResourceList from '@/components/ResourceList' // 导入资源列表组件
-import ArticleList from '@/components/ArticleList' // 导入文章列表组件
 import { Metadata } from 'next' // 导入Next.js的Metadata类型
 
 /**
@@ -49,7 +48,14 @@ export default function Home() {
   const resources = JSON.parse(fs.readFileSync(resourcesPath, 'utf8'))
   // 获取前6篇排序后的文章数据
   const allPostsData = getSortedPostsData().slice(0, 6)
-
+{/* 
+      容器div的垂直间距控制说明：
+      - space-y-* 类控制垂直方向元素间距
+      - 默认值：space-y-10 (2.5rem/40px)
+      - 响应式值：md:space-y-12 (3rem/48px)
+      - 可调整范围：space-y-0到space-y-96 (0到24rem)
+      - 调整建议：每增加1相当于增加0.25rem/4px
+    */}
   return (
     <div className="container mx-auto px-4 py-6 md:py-4 space-y-10 md:space-y-12">
       <section className="text-center space-y-4 md:space-y-6">
@@ -84,7 +90,6 @@ export default function Home() {
             GitBase is an open-source, database free, and amazing template website
         </p>
       </section>
-
       <ResourceList resources={resources} /> {/* 资源列表组件，传入了资源数据 */}
       
     </div>
