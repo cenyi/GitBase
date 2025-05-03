@@ -188,7 +188,9 @@ export default function AdminPage() {
 
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-bold">Resource Management</h2>
-        
+        <Link href="/admin/categories">
+          <Button className="text-white bg-black">Category Management</Button>
+        </Link>
       </div>
       <Table>
         <TableHeader>
