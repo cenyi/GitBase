@@ -40,5 +40,11 @@
     "description": "嵌入式数据库",
     "url": "",
     "category": "DATABASE"
+  },
+  {
+    "name": "mysql",
+    "description": "非常流行的数据库",
+    "url": "",
+    "category": "DATABASE"
   }
 ]
