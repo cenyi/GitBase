@@ -31,7 +31,7 @@ export default async function Post({ params }) {
   const postData = await getPostData(params.slug);
   
   return (
-    <article className="container mx-auto px-4 py-12 max-w-3xl">
+    <article className="container mx-auto px-4 py-12 max-w-6xl">
       {/* 面包屑导航 */}
       <nav className="flex items-center text-sm text-gray-500 mb-6">
         {/* 链接到主页 */}
@@ -58,8 +58,7 @@ export default async function Post({ params }) {
       
       {/* 文章内容 */}
       <div 
-        className="prose prose-lg max-w-none"
-        // 使用 dangerouslySetInnerHTML 渲染 HTML 内容
+        className="prose prose-lg max-w-6xl mx-auto"
         dangerouslySetInnerHTML={{ __html: postData.contentHtml }} 
       />
       
