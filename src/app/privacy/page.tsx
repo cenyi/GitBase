@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
         <h2 className="text-xl font-semibold mt-6 mb-4">4. Changes to This Policy</h2>
         <p className="mb-4">
           We may update this privacy policy from time to time. The updated version will be 
-          indicated by an updated "Revised" date and the updated version will be effective 
+          indicated by an updated 'Revised' date and the updated version will be effective 
           as soon as it is accessible.
         </p>
         
